@@ -1,0 +1,3 @@
+import egmodule
+egmodule.star()
+

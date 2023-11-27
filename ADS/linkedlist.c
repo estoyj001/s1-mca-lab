@@ -48,12 +48,14 @@ void append(int val){
 
 void insertpos(int val,int pos){
 	struct node* temp = head;
-	for(int i=1;i<=pos;i++){
+	for(int i=1;i<pos-1;i++){
 		temp=temp->next;	
 	}
 	struct node* newnode = malloc(sizeof(struct node));
+	newnode->data = val;
 	newnode->next = temp->next;
 	temp->next=newnode;
+	
 	
 	
 }
@@ -65,13 +67,15 @@ void printll(){
 		printf(" %d ",temp->data);
 		temp = temp->next;
 	}
+	printf("\n");
 }
 
 
 int main(){
 	int c,val,pos;
-	printf("Choose An Option :\n1.Create A Linked List\n2.Insert At Beginning\n3.Insert At End (Appending)\n4.Insert At Desired Position\n5.Print Your Linked List\n");
+	
 	while(1){
+	printf("Choose An Option :\n1.Create A Linked List\n2.Insert At Beginning\n3.Insert At End (Appending)\n4.Insert At Desired Position\n5.Print Your Linked List\n");
 	
 	scanf("%d",&c);
 	

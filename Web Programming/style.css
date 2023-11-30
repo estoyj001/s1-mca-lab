@@ -1,0 +1,9 @@
+#left{
+    float : left;
+    width : max-content;
+
+}
+img{
+    border-radius: 8px;
+    object-fit: contain;
+}

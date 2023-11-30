@@ -12,9 +12,7 @@ void create(int val){
 		head->data = val;
 		head->next=NULL;
 	}
-	else{
-		
-	}
+	
 	
 }
 
@@ -35,7 +33,7 @@ void append(int val){
 	newnode->next = NULL;
 	newnode->data = val;
 	if (head == NULL) {
-        head = newnode;
+        create(val);
         return;
     }
 	while(temp->next!=NULL){
@@ -64,10 +62,61 @@ void printll(){
 	printf("Contents of your linked list are : ");
 	struct node* temp = head;
 	while(temp!=NULL){
-		printf(" %d ",temp->data);
+		printf(" %d --> ",temp->data);
 		temp = temp->next;
 	}
 	printf("\n");
+}
+
+void delbeg(){
+	struct node* temp = head;
+	head = head->next;
+	printf("\n%d deleted from the linked list\n",temp->data); 
+	free(temp);
+}
+
+void delend(){
+	struct node* temp = head;
+	while(temp->next->next!=NULL){
+		temp = temp->next;
+	}
+	free(temp->next);
+	temp->next = NULL;
+	printf("\n Last node deleted!");
+	
+}
+
+void delpos(int pos){
+	
+	struct node* temp = head;
+	for(int i=1;i<pos-1;i++){
+		temp=temp->next;
+	}
+	struct node* temp2 = temp->next;
+	temp->next = temp->next->next;
+	free(temp2);
+	temp2 = NULL;
+	printf("\n %d position has been deleted",pos);
+	
+}
+
+void search(int val){
+	printf("\nenter element to search : ");
+			scanf("%d",&val);
+	struct node* temp = head;
+	while(temp!=NULL){
+		if(temp->data==val){
+		printf("\n%d has been found\n",val); 
+		return;
+	}
+		temp = temp->next;
+		
+	
+	}
+	
+		printf("\n%d was not found\n",val); 
+
+	
 }
 
 
@@ -75,7 +124,7 @@ int main(){
 	int c,val,pos;
 	
 	while(1){
-	printf("Choose An Option :\n1.Create A Linked List\n2.Insert At Beginning\n3.Insert At End (Appending)\n4.Insert At Desired Position\n5.Print Your Linked List\n");
+	printf("Choose An Option :\n1.Create A Linked List\n2.Insert At Beginning\n3.Insert At End (Appending)\n4.Insert At Desired Position\n5.Delete from desired position\n6.Delete from beginning\n7.Delete from end\n8.Print Your Linked List \n9.Search\n");
 	
 	scanf("%d",&c);
 	
@@ -100,12 +149,32 @@ int main(){
 		insertpos(val,pos);
 		break;
 		
-		case 5 : 
-		printll();
-		break;
+		case 5 : delpos(pos);
+			printf("\nenter position to be deleted : ");
+			scanf("%d",&pos);
+			break;
+			
 		
-		default : printf("Invalid Input, Try Again!");
-		return 0;
+		case 6 : 
+			delbeg();
+			break;
+		
+		case 7 : 
+			delend();
+			break;
+		
+		case 8 : printll();
+			break;
+			
+		case 9 : 
+			
+			search(val);
+			
+			break; 
+		
+		
+		default : printf("\nInvalid Input, Try Again!");
+			return 0;
 	}
 	}
 	
